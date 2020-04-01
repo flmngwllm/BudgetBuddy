@@ -13,7 +13,7 @@ var budgetController = (function() {
         this.value = value; 
     }
 
-// used to store our objects and data
+// used to store our array of objects and data
  var data = {
     allItems : {
         exp : [],
@@ -22,6 +22,33 @@ var budgetController = (function() {
     totals : {
         exp : 0,
         inc : 0
+    }
+};
+
+return{
+    addItem: function(type, desc, val){
+        var newItem;
+
+        // Create new ID
+        if(data.allItems[type].length > 0){
+        ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+        } else {
+            ID = 0;
+        }
+        
+        // Create new item based on type
+        if(type === 'exp'){
+            newItem = new Expense(ID, desc, val)
+
+        }else if(type === 'inc'){
+            newItem = new Incomee(ID, desc, val)
+        }
+
+        // Push it into array
+        data.allItems[type].push(newItem)
+
+        // Return the new item
+        return newItem;
     }
 }
 
@@ -74,13 +101,15 @@ var controller = (function(budgetContr, UIContr) {
 
 
     var contrAddItem = function(){
+
         // Get input data
         var input = UIContr.getInput();
-        console.log(input);
 
         // Add item to budget controller
+        var newItem = budgetContr.addItem(input.type, inputDescription, input.value);
 
         // Add item to UI
+
 
         // Calculate the budget
 
