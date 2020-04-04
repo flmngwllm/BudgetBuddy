@@ -23,11 +23,11 @@ body {
 }
 
 .red { 
-    color: #ff5049;
+    color: #ff5049 !important;
 }
 
 .red-focus:focus{
-    border: 1px solid #ff5049;
+    border: 1px solid #ff5049 !important;
 }
 
 
